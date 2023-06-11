@@ -1,0 +1,31 @@
+diff --git a/Makefile b/Makefile
+index 3d89718..80ca05a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -34,7 +34,7 @@ ifeq ($(OS),NetBSD)
+ DEFAULT_CFLAGS += -D_NETBSD_SOURCE
+ endif
+ 
+-DEFAULT_CFLAGS += -Iinclude/
++DEFAULT_CFLAGS += -Iinclude/ -Ireplace_me/build
+ 
+ PKG_CONFIG ?= pkg-config
+ 
+@@ -62,7 +62,7 @@ CROSS_COMPILE ?= $(or $(shell ./find-arm-gcc.sh),$(CROSS_DEFAULT))
+ CROSS_CC := $(CROSS_COMPILE)gcc
+ 
+ DESTDIR ?=
+-PREFIX  ?= /usr/local
++PREFIX  ?= replace_me/build
+ BINDIR  ?= $(PREFIX)/bin
+ MANDIR  ?= $(PREFIX)/share/man/man1
+ 
+@@ -143,7 +143,7 @@ SPI_FLASH:= fel-spiflash.c fel-spiflash.h fel-remotefunc-spi-data-transfer.h
+ 
+ sunxi-fel: fel.c fit_image.c thunks/fel-to-spl-thunk.h $(PROGRESS) $(SOC_INFO) $(FEL_LIB) $(SPI_FLASH)
+ 	$(CC) $(HOST_CFLAGS) $(LIBUSB_CFLAGS) $(ZLIB_CFLAGS) $(LDFLAGS) -o $@ \
+-		$(filter %.c,$^) $(LIBS) $(LIBUSB_LIBS) $(ZLIB_LIBS) -lfdt
++		$(filter %.c,$^) $(LIBS) $(LIBUSB_LIBS) $(ZLIB_LIBS) -lfdt -Lreplace_me/build/include
+ 
+ sunxi-nand-part: nand-part-main.c nand-part.c nand-part-a10.h nand-part-a20.h
+ 	$(CC) $(HOST_CFLAGS) -c -o nand-part-main.o nand-part-main.c

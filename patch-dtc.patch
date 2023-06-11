@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 784e2f8..8831caa 100644
+--- a/Makefile
++++ b/Makefile
+@@ -24,7 +24,7 @@ CPPFLAGS = -I libfdt -I . -DFDT_ASSUME_MASK=$(ASSUME_MASK)
+ WARNINGS = -Wall -Wpointer-arith -Wcast-qual -Wnested-externs -Wsign-compare \
+ 	-Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls -Wshadow \
+ 	-Wsuggest-attribute=format -Wwrite-strings
+-CFLAGS = -g -Os $(SHAREDLIB_CFLAGS) -Werror $(WARNINGS) $(EXTRA_CFLAGS)
++CFLAGS = -g -Os $(SHAREDLIB_CFLAGS) -Werror -Wno-error $(WARNINGS) $(EXTRA_CFLAGS)
+ 
+ BISON = bison
+ LEX = flex
